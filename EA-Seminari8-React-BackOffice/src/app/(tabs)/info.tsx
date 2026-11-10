@@ -66,7 +66,7 @@ export default function InfoScreen() {
             <Text style={[styles.colCell, styles.boldCell]}>&lt;Text&gt;</Text>
           </View>
           <View style={styles.tableRow}>
-            <Text style={styles.colCell}>&lt;input type="text"&gt;</Text>
+            <Text style={styles.colCell}>&lt;input type=&quot;text&quot;&gt;</Text>
             <Text style={[styles.colCell, styles.boldCell]}>&lt;TextInput&gt;</Text>
           </View>
           <View style={styles.tableRow}>

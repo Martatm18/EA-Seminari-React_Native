@@ -54,8 +54,29 @@ export function useApiList<T extends { _id: string }>(fetcher: (signal: AbortSig
   );
 
   useEffect(() => {
-    load();
-  }, [load]);
+    const controller = new AbortController();
+    let cancelled = false;
+
+    const run = async () => {
+      try {
+        const items = await fetcher(controller.signal);
+        if (!cancelled) {
+          dispatch({ type: 'loaded', items });
+        }
+      } catch (err) {
+        if (!cancelled && !isAbort(err)) {
+          dispatch({ type: 'failed', error: errorMessage(err) });
+        }
+      }
+    };
+
+    void run();
+
+    return () => {
+      cancelled = true;
+      controller.abort();
+    };
+  }, [fetcher]);
 
   // Si borramos un elemento en la API (que devuelve 204), lo quitamos directamente de la lista local
   const removeItem = useCallback((id: string) => dispatch({ type: 'removed', id }), []);

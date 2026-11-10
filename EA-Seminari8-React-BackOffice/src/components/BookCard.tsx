@@ -3,6 +3,7 @@ import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { Book } from '../models';
 import { formatPrice, languageName, truncate } from '../utils/format';
+import { FavouriteButton } from './FavouriteButton';
 
 interface BookCardProps {
   book: Book;
@@ -13,7 +14,7 @@ interface BookCardProps {
 }
 
 // Componente para pintar un libro, ya sea en fila compacta (lista) o en tarjeta con portada grande.
-// Incluye la editorial (publisher) que nos pedía el ejercicio.
+// Incluye la editorial (publisher) y el botón de favoritos.
 export function BookCard({ book, viewMode, onEdit, onDelete, onPress }: BookCardProps) {
   const isCard = viewMode === 'cards';
   // Obtenemos los nombres de los autores separados por coma
@@ -49,8 +50,9 @@ export function BookCard({ book, viewMode, onEdit, onDelete, onPress }: BookCard
             ) : null}
           </View>
         </View>
-        {/* Botones de acción: editar y borrar */}
+        {/* Botones de acción: favorito, editar y borrar */}
         <View style={styles.listActions}>
+          <FavouriteButton bookId={book._id} />
           <Pressable
             style={({ pressed }) => [styles.actionButton, styles.editButton, pressed && styles.pressed]}
             onPress={() => onEdit(book)}
@@ -113,6 +115,7 @@ export function BookCard({ book, viewMode, onEdit, onDelete, onPress }: BookCard
       </View>
 
       <View style={styles.cardFooter}>
+        <FavouriteButton bookId={book._id} />
         <Pressable
           style={({ pressed }) => [styles.footerButton, styles.footerEdit, pressed && styles.pressed]}
           onPress={() => onEdit(book)}
@@ -198,6 +201,7 @@ const styles = StyleSheet.create({
   },
   listActions: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: 6,
   },
   actionButton: {
@@ -282,6 +286,7 @@ const styles = StyleSheet.create({
   },
   cardFooter: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'flex-end',
     gap: 8,
     padding: 12,
