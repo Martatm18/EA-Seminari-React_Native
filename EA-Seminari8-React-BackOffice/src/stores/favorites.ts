@@ -1,4 +1,3 @@
-// src/stores/favorites.ts
 import { atom } from 'nanostores';
 
 const STORAGE_KEY = 'favorite-books';

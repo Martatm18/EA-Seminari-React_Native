@@ -1,4 +1,3 @@
-// src/app/(tabs)/favorites.tsx
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
