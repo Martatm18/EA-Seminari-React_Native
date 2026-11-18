@@ -1,5 +1,5 @@
 # Enllaç Vídeo Explicació Exercici React Native Seminari 8: 
-
+https://drive.google.com/file/d/1_TQSW67t-6FN2HQ6IyFtQx_81zLTK9dU/view?usp=sharing
 
 # Documentació:
 **1. Referències dels materials consultats**
